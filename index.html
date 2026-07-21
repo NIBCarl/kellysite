@@ -130,6 +130,8 @@
     html {
       scroll-behavior: smooth;
       scroll-padding-top: 90px;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     body {
@@ -140,6 +142,22 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1;
+    }
+
+    /* GPU-acceleration hints for animated elements */
+    .hero-image-main,
+    .hero-image-frame,
+    .scroll-progress,
+    .back-to-top,
+    .reveal, .reveal-left, .reveal-right,
+    .essay-feature-image img,
+    .archive-image img,
+    .tier-card {
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     h1, h2, h3, .serif {
@@ -257,6 +275,17 @@
       max-width: 1480px;
       margin: 0 auto;
       width: 100%;
+      gap: 1rem;
+    }
+
+    .header-inner > .logo {
+      flex: 0 1 auto;
+      min-width: 0;
+    }
+
+    .header-inner > .hamburger,
+    .header-inner > nav.desktop-nav {
+      flex: 0 0 auto;
     }
 
     .logo {
@@ -268,18 +297,27 @@
       line-height: 1;
       text-decoration: none;
       color: var(--ink);
-      display: flex;
-      align-items: baseline;
-      gap: 0.5rem;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.15rem;
+      min-width: 0;
+      overflow: hidden;
     }
 
     .logo-mark {
       color: var(--accent);
       font-style: italic;
       font-weight: 400;
+      padding: 0 0.1em;
     }
 
-    .logo span {
+    .logo-word {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .logo-tag {
       display: block;
       font-size: 0.58rem;
       font-weight: 500;
@@ -287,7 +325,8 @@
       text-transform: uppercase;
       color: var(--accent);
       font-family: 'Inter', sans-serif;
-      margin-top: 0.3rem;
+      margin-top: 0.1rem;
+      white-space: nowrap;
     }
 
     /* Desktop Nav */
@@ -369,13 +408,21 @@
       flex-direction: column;
       justify-content: center;
       gap: 5px;
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       background: none;
       border: none;
       cursor: pointer;
       padding: 0;
       z-index: 1001;
+      position: relative;
+    }
+
+    /* Expand the actual tap target without enlarging the icon */
+    .hamburger::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
     }
 
     .hamburger span {
@@ -1652,35 +1699,28 @@
 
     .about-portrait {
       position: relative;
-      aspect-ratio: 4 / 5;
       overflow: hidden;
+      background: var(--ink);
     }
 
     .about-portrait img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      display: block;
       filter: contrast(1.03);
+      transition: transform 0.8s var(--transition-smooth);
     }
 
-    .about-portrait-frame {
-      position: absolute;
-      inset: 1.2rem;
-      border: 1px solid rgba(252, 250, 247, 0.5);
-      pointer-events: none;
-      z-index: 2;
+    .about-portrait:hover img {
+      transform: scale(1.02);
     }
 
     .about-portrait-caption {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      right: 1.5rem;
-      color: var(--cream);
+      margin-top: 1.2rem;
+      color: var(--ink);
       font-size: 0.7rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      z-index: 3;
       font-weight: 500;
     }
 
@@ -1690,9 +1730,9 @@
       font-style: italic;
       text-transform: none;
       letter-spacing: 0.01em;
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       margin-top: 0.3rem;
-      opacity: 0.92;
+      color: var(--accent);
     }
 
     .about-content .signature {
@@ -2097,6 +2137,8 @@
     }
 
     @media (max-width: 768px) {
+      header { padding: 1.1rem 1.5rem; }
+      header.scrolled { padding: 0.8rem 1.5rem; }
       .hamburger { display: flex; }
       nav.desktop-nav { display: none; }
 
@@ -2142,10 +2184,25 @@
     }
 
     @media (max-width: 480px) {
+      header { padding: 1rem 1.1rem; }
+      header.scrolled { padding: 0.7rem 1.1rem; }
       .hero h1 { font-size: 2.3rem; }
       .hero .subtitle { font-size: 1rem; }
       .logo { font-size: 1.4rem; }
       .tier-price { font-size: 2.2rem; }
+    }
+
+    /* Very small phones — iPhone 4/SE (320px), Galaxy Fold (280px), older Androids */
+    @media (max-width: 360px) {
+      header,
+      header.scrolled { padding: 0.85rem 0.9rem; }
+      .header-inner { gap: 0.6rem; }
+      .logo { font-size: 1.18rem; }
+      .logo-tag {
+        font-size: 0.5rem;
+        letter-spacing: 0.22em;
+      }
+      .hero h1 { font-size: 2rem; }
     }
 
     /* Reduced motion */
@@ -2174,9 +2231,9 @@
        ============================================ -->
   <header id="site-header">
     <div class="header-inner">
-      <a href="#hero" class="logo">
-        Feinix<span class="logo-mark">·</span>Haus
-        <span>A Publishing House</span>
+      <a href="#hero" class="logo" aria-label="Feinix Haus — Home">
+        <span class="logo-word">Feinix<span class="logo-mark">·</span>Haus</span>
+        <span class="logo-tag">A Publishing House</span>
       </a>
       <nav class="desktop-nav" id="main-nav" aria-label="Primary">
         <ul>
@@ -2185,7 +2242,7 @@
           <li><a href="#from-margins">From the Margins</a></li>
           <li><a href="#pool-haus">Pool Haus</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#pool-haus" class="nav-cta">Join</a></li>
+          <li><a href="#pool-join" class="nav-cta">Join</a></li>
         </ul>
       </nav>
       <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -2208,7 +2265,7 @@
       <li><a href="#about">About</a></li>
     </ul>
     <div class="mobile-menu-cta">
-      <a href="#pool-haus" class="btn btn-ink">Join Pool Haus <span class="arrow">→</span></a>
+      <a href="#pool-join" class="btn btn-ink">Join Pool Haus <span class="arrow">→</span></a>
     </div>
   </aside>
 
@@ -2228,7 +2285,7 @@
           Feinix Haus is an editorial house and gathering place — essays, a private community, and a signature editorial experience. Think less wellness site, more publishing house built around a life worth paying attention to.
         </p>
         <div class="hero-actions">
-          <a href="#pool-haus" class="btn">Join the Community <span class="arrow">→</span></a>
+          <a href="#pool-join" class="btn">Join the Community <span class="arrow">→</span></a>
           <a href="#from-margins" class="text-link">Read the essays <span class="arrow">→</span></a>
         </div>
       </div>
@@ -2600,7 +2657,7 @@
         </div>
       </div>
 
-      <div class="pool-tiers reveal-stagger">
+      <div class="pool-tiers reveal-stagger" id="pool-join" style="scroll-margin-top: 100px;">
         <!-- Free Tier -->
         <div class="tier-card">
           <span class="tier-badge">Start Here · Free</span>
@@ -2647,15 +2704,14 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-portrait reveal-left">
-          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1000&auto=format&fit=crop"
-               alt="Editor portrait in warm window light — observed, not performed"
-               width="500" height="625"
+          <img src="assets/kelly-portrait.png"
+               alt="Kelly Gunn, Founder & Editor-in-Chief of Feinix Haus"
+               width="500" height="266"
                loading="lazy"
                decoding="async">
-          <div class="about-portrait-frame"></div>
           <div class="about-portrait-caption">
-            Editor-in-Chief
-            <em>"I edit this house the way I edit a life."</em>
+            Kelly Gunn
+            <em>Founder &amp; Editor-in-Chief</em>
           </div>
         </div>
         <div class="about-content reveal-right">
@@ -2726,9 +2782,9 @@
 
     <div class="footer-main">
       <div class="footer-brand">
-        <a href="#hero" class="logo">
-          Feinix<span class="logo-mark">·</span>Haus
-          <span>A Publishing House</span>
+        <a href="#hero" class="logo" aria-label="Feinix Haus — Home">
+          <span class="logo-word">Feinix<span class="logo-mark">·</span>Haus</span>
+          <span class="logo-tag">A Publishing House</span>
         </a>
         <p>An editorial house for thoughtful living. Built around essays, gatherings, and the art of paying attention.</p>
       </div>
@@ -2783,25 +2839,150 @@
     (function () {
       'use strict';
 
-      // ── Sticky Header ──
+      // ─────────────────────────────────────────────
+      // Reduced-motion preference (used everywhere)
+      // ─────────────────────────────────────────────
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const supportsSmoothScroll = 'scrollBehavior' in document.documentElement.style;
+
+      // ─────────────────────────────────────────────
+      // CINEMATIC SMOOTH SCROLL
+      // Custom ease-out-cubic animation with distance-scaled duration.
+      // Falls back to native instant-jump when reduced motion is requested.
+      // ─────────────────────────────────────────────
+      let smoothScrollAnim = null;
+
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function smoothScrollTo(targetY, duration) {
+        // Cancel any in-flight scroll animation
+        if (smoothScrollAnim) cancelAnimationFrame(smoothScrollAnim);
+
+        const startY = window.scrollY;
+        const distance = targetY - startY;
+
+        // Short distances = short durations (feels instant, not sluggish)
+        // Long distances cap at 1.4s so it never drags
+        const dur = Math.max(450, Math.min(duration != null ? duration : 1100, 1400));
+        const startTime = performance.now();
+
+        function step(now) {
+          const elapsed = now - startTime;
+          const t = Math.min(elapsed / dur, 1);
+          const eased = easeOutCubic(t);
+          window.scrollTo(0, startY + distance * eased);
+          if (t < 1) {
+            smoothScrollAnim = requestAnimationFrame(step);
+          } else {
+            smoothScrollAnim = null;
+          }
+        }
+        smoothScrollAnim = requestAnimationFrame(step);
+      }
+
+      function scrollToElement(target, opts) {
+        opts = opts || {};
+        if (!target) return;
+
+        // Account for sticky header
+        const headerHeight = 80;
+        const rect = target.getBoundingClientRect();
+        const targetY = window.scrollY + rect.top - headerHeight + 2;
+
+        if (prefersReducedMotion || !supportsSmoothScroll) {
+          // Respect reduced-motion: jump instantly
+          window.scrollTo(0, targetY);
+        } else {
+          // Distance-scaled duration — short hops feel snappy, long hops feel cinematic
+          const distance = Math.abs(targetY - window.scrollY);
+          const duration = Math.min(300 + distance * 0.25, 1300);
+          smoothScrollTo(targetY, duration);
+        }
+
+        // Update focus for accessibility without jumping the scroll
+        if (opts.setFocus) {
+          setTimeout(function () {
+            target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
+          }, 50);
+        }
+      }
+
+      // Intercept every in-page anchor click
+      document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          const href = link.getAttribute('href');
+          if (!href || href === '#') return;
+          const target = document.querySelector(href);
+          if (!target) return;
+          e.preventDefault();
+          scrollToElement(target, { setFocus: false });
+        });
+      });
+
+      // ─────────────────────────────────────────────
+      // RAF-THROTTLED SCROLL HANDLERS
+      // Bundles header-sticky, progress bar, back-to-top, parallax
+      // into a single rAF loop so scroll stays buttery.
+      // ─────────────────────────────────────────────
       const header = document.getElementById('site-header');
-      function handleHeaderScroll() {
-        if (window.scrollY > 60) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-      }
-      window.addEventListener('scroll', handleHeaderScroll, { passive: true });
-
-      // ── Reading progress bar ──
       const progressBar = document.getElementById('scroll-progress');
-      function handleProgress() {
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
-        progressBar.style.width = pct + '%';
-      }
-      window.addEventListener('scroll', handleProgress, { passive: true });
-      handleProgress();
+      const backToTop = document.getElementById('back-to-top');
+      const heroVisual = document.querySelector('.hero-visual');
+      const heroImage = document.querySelector('.hero-image-main');
+      const scrollCue = document.querySelector('.scroll-cue');
 
-      // ── Mobile Menu ──
+      let scrollTicking = false;
+      let lastScrollY = window.scrollY;
+
+      function onScrollFrame() {
+        const y = lastScrollY;
+
+        // Sticky header
+        if (y > 60) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+
+        // Progress bar
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (y / docHeight) * 100 : 0;
+        progressBar.style.width = pct + '%';
+
+        // Back to top
+        if (y > 500) backToTop.classList.add('visible');
+        else backToTop.classList.remove('visible');
+
+        // Hero parallax — very subtle, only in first viewport, only after intro animation
+        if (heroImage && !prefersReducedMotion && y < window.innerHeight) {
+          const parallax = y * 0.08;
+          heroImage.style.transform = 'translate3d(0,' + parallax + 'px,0)';
+        } else if (heroImage && !prefersReducedMotion) {
+          heroImage.style.transform = '';
+        }
+
+        // Scroll cue fade
+        if (scrollCue) {
+          scrollCue.style.opacity = Math.max(0, 1 - y / 300);
+        }
+
+        scrollTicking = false;
+      }
+
+      function requestScrollFrame() {
+        lastScrollY = window.scrollY;
+        if (!scrollTicking) {
+          scrollTicking = true;
+          requestAnimationFrame(onScrollFrame);
+        }
+      }
+
+      window.addEventListener('scroll', requestScrollFrame, { passive: true });
+      onScrollFrame();
+
+      // ─────────────────────────────────────────────
+      // Mobile Menu
+      // ─────────────────────────────────────────────
       const hamburger = document.getElementById('hamburger-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const menuBackdrop = document.getElementById('menu-backdrop');
@@ -2825,16 +3006,23 @@
       hamburger.addEventListener('click', openMenu);
       menuClose.addEventListener('click', closeMenu);
       menuBackdrop.addEventListener('click', closeMenu);
+      // Mobile menu links: close the panel first, then let the smooth-scroll
+      // handler (bound separately on all a[href^="#"]) glide to the target.
       mobileMenu.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', closeMenu);
+        link.addEventListener('click', function () {
+          // Close immediately so the scroll animation isn't obscured by the panel
+          closeMenu();
+        });
       });
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
       });
 
-      // ── Scroll Reveal (Intersection Observer) ──
+      // ─────────────────────────────────────────────
+      // Scroll Reveal (Intersection Observer)
+      // ─────────────────────────────────────────────
       const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-stagger');
-      if ('IntersectionObserver' in window) {
+      if ('IntersectionObserver' in window && !prefersReducedMotion) {
         const revealObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
@@ -2848,21 +3036,21 @@
         revealElements.forEach(function (el) { el.classList.add('visible'); });
       }
 
-      // ── FAQ Accordion ──
+      // ─────────────────────────────────────────────
+      // FAQ Accordion
+      // ─────────────────────────────────────────────
       document.querySelectorAll('.faq-question').forEach(function (btn) {
         btn.addEventListener('click', function () {
           const item = btn.parentElement;
           const answer = item.querySelector('.faq-answer');
           const isOpen = item.classList.contains('open');
 
-          // Close all
           document.querySelectorAll('.faq-item').forEach(function (other) {
             other.classList.remove('open');
             other.querySelector('.faq-answer').style.maxHeight = null;
             other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
           });
 
-          // Open clicked if it was closed
           if (!isOpen) {
             item.classList.add('open');
             answer.style.maxHeight = answer.scrollHeight + 'px';
@@ -2871,15 +3059,11 @@
         });
       });
 
-      // ── Back to Top ──
-      const backToTop = document.getElementById('back-to-top');
-      function handleBackToTopVisibility() {
-        if (window.scrollY > 500) backToTop.classList.add('visible');
-        else backToTop.classList.remove('visible');
-      }
-      window.addEventListener('scroll', handleBackToTopVisibility, { passive: true });
+      // ─────────────────────────────────────────────
+      // Back to Top (custom smooth scroll up)
+      // ─────────────────────────────────────────────
       backToTop.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        scrollToElement(document.getElementById('hero'));
       });
 
       // ── Newsletter Form ──
@@ -2915,14 +3099,6 @@
             button.style.borderColor = '';
           }, 3500);
         });
-      }
-
-      // ── Scroll cue fade ──
-      const scrollCue = document.querySelector('.scroll-cue');
-      if (scrollCue) {
-        window.addEventListener('scroll', function () {
-          scrollCue.style.opacity = Math.max(0, 1 - window.scrollY / 300);
-        }, { passive: true });
       }
     })();
   </script>
