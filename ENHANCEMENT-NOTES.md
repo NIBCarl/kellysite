@@ -26,12 +26,20 @@ Sections she requested on the homepage:
 |---|---|
 | Introduction to Feinix Haus | ✅ Hero |
 | The philosophy | ✅ Philosophy with 3 pillars |
-| Featured essay | ✅ Featured Essay hero card |
-| Introduction to The Haus Edit | ✅ Full Haus Edit section (What/Who/Experience/Volume I + FAQ) |
-| Introduction to Pool Haus | ✅ Pool Haus with Free + $22/mo tiers |
+| Featured essay | ✅ Featured Essay hero card (single essay — "The Boat") |
+| Introduction to The Haus Edit | ✅ Haus Edit **introduction** only (full detail page = EVENTUALLY) |
+| Introduction to Pool Haus | ✅ Pool Haus with Free + $22/mo tier preview |
 | Featured media (PEOPLE, podcasts, press) | ✅ Press & Media strip |
 | Invitation to explore | ✅ Footer + newsletter |
-| From the Margins (essays) | ✅ Essay archive with both C-Heads essays |
+
+> **Note on scope.** Earlier drafts over-built Home by placing the full Haus Edit
+> detail grid, FAQ, application form, About teaser, and the 3-up essay archive
+> directly on the homepage. Kelly's requirement marks Haus Edit, Pool Haus,
+> From the Margins, and About as **separate EVENTUALLY pages**, each with their
+> own content list. Home now contains only the seven sections she specified, in
+> her specified order. The From the Margins teaser (two essay links) sits after
+> Pool Haus as a soft pointer into the editorial work; the full searchable
+> archive will live on its own page.
 
 ---
 
