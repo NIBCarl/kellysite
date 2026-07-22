@@ -39,6 +39,10 @@
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
+  <!-- GSAP & ScrollTrigger Animation Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
   <!-- Structured Data — Organization -->
   <script type="application/ld+json">
   {
@@ -335,52 +339,24 @@
     </section>
 
     <!-- ============================================
-       PHILOSOPHY / EDITOR'S LETTER
+       STORY MODULE — EDITOR'S LETTER & PHILOSOPHY
        ============================================ -->
-    <section class="philosophy" id="philosophy">
-      <span class="section-marker"><span>01</span> · Philosophy</span>
+    <section class="kinfolk-story-module" id="philosophy">
       <div class="container">
-        <div class="philosophy-grid">
+        <div class="story-module-grid">
           <div class="reveal-left">
-            <span class="section-label">Editor's Letter</span>
-            <div style="position:relative; margin-top:2.5rem;">
-              <span class="philosophy-quote-mark">"</span>
-              <p class="philosophy-quote">
-                What if nothing was missing? What if your next chapter isn't about reinvention, but recognition? Welcome
-                home.
-              </p>
-              <p class="philosophy-attribution">— The Feinix Haus Editorial</p>
-            </div>
+            <span class="editorial-meta" style="margin-bottom: 1.2rem;">THE PHILOSOPHY · EDITOR'S STATEMENT</span>
+            <h2 class="story-module-title">Recognition over <em>reinvention.</em></h2>
+            <p class="story-module-text drop-cap">
+              Some places ask you to become someone new. This one asks something quieter. What if nothing was missing? What if your next chapter isn't about reinvention, but recognition? We examine your life the way an editor studies a manuscript — carefully, curiously, without rushing toward an answer.
+            </p>
           </div>
           <div class="reveal-right">
-            <p class="section-text drop-cap" style="margin-bottom: 1.5rem;">
-              Some lives don't need reinvention. They need editing. Together we examine your life, the way an editor
-              studies a manuscript — carefully, curiously, without rushing toward an answer.
-            </p>
-            <div class="philosophy-pillars">
-              <div class="pillar">
-                <span class="pillar-no">01</span>
-                <div>
-                  <h4>Recognition over reinvention</h4>
-                  <p>Some places ask you to become someone new. This one asks something quieter — recognizing what's
-                    already built and editing with intention.</p>
-                </div>
-              </div>
-              <div class="pillar">
-                <span class="pillar-no">02</span>
-                <div>
-                  <h4>A room for regulars</h4>
-                  <p>The Pool Haus is where regulars gather. Playlists, observations, Sunday conversations, good
-                    records, strong espresso. Pull up a chair.</p>
-                </div>
-              </div>
-              <div class="pillar">
-                <span class="pillar-no">03</span>
-                <div>
-                  <h4>Something you can hold</h4>
-                  <p>Every Haus Edit begins with Volume One — a beautiful printed volume created from our conversation.
-                    Thoughtfully designed and beautifully bound.</p>
-                </div>
+            <div class="kinfolk-photo-mat">
+              <img src="assets/kelly-portrait.png" alt="Kelly Gunn — Editor-in-Chief" width="600" height="720" loading="lazy" decoding="async">
+              <div class="photo-caption-subtle">
+                <span>Kelly Gunn</span>
+                <span>Founder &amp; Editor-in-Chief</span>
               </div>
             </div>
           </div>
@@ -389,10 +365,72 @@
     </section>
 
     <!-- ============================================
+       JOURNAL GRID — 3-COLUMN EDITORIAL SPREAD
+       ============================================ -->
+    <section class="journal-grid-section" id="experiences">
+      <div class="container">
+        <div class="journal-grid-header reveal">
+          <div>
+            <span class="editorial-meta">THE PUBLISHING HOUSE · EDITIONS &amp; ROOMS</span>
+            <h2 class="section-heading" style="margin-top: 0.6rem;">Inside the <em>House.</em></h2>
+          </div>
+          <a href="haus-edit.html" class="text-link">Explore All Experiences <span class="arrow">→</span></a>
+        </div>
+
+        <div class="journal-grid reveal-stagger">
+          <!-- Card 1: The Haus Edit -->
+          <article class="journal-card">
+            <div class="journal-card-image">
+              <img src="assets/framer-volume-one.jpg" alt="The Haus Edit — Volume One" width="400" height="280" loading="lazy" decoding="async">
+            </div>
+            <div class="journal-card-body">
+              <span class="journal-card-tag">Private Appointment · Volume I</span>
+              <a href="haus-edit.html" class="journal-card-title">The Haus Edit</a>
+              <p class="journal-card-desc">
+                A private editorial for your life. Together we refine, clarify, and shape your next chapter into a hand-bound, printed Volume One.
+              </p>
+              <a href="haus-edit.html" class="journal-card-link">Reserve Appointment <span class="arrow">→</span></a>
+            </div>
+          </article>
+
+          <!-- Card 2: Pool Haus -->
+          <article class="journal-card">
+            <div class="journal-card-image">
+              <img src="assets/framer-pool-haus.jpg" alt="Pool Haus — The Gathering Place" width="400" height="280" loading="lazy" decoding="async">
+            </div>
+            <div class="journal-card-body">
+              <span class="journal-card-tag">For the Regulars · Community</span>
+              <a href="pool-haus.html" class="journal-card-title">The Pool Haus</a>
+              <p class="journal-card-desc">
+                The gathering place behind the publishing house. Playlists, Sunday conversations, Open Haus calls, and a circle that values depth.
+              </p>
+              <a href="pool-haus.html" class="journal-card-link">Enter the Room <span class="arrow">→</span></a>
+            </div>
+          </article>
+
+          <!-- Card 3: From the Margins -->
+          <article class="journal-card">
+            <div class="journal-card-image">
+              <img src="assets/framer-reading-table.png" alt="From the Margins — Reading Table" width="400" height="280" loading="lazy" decoding="async">
+            </div>
+            <div class="journal-card-body">
+              <span class="journal-card-tag">Editorial &amp; Essays · Reading Table</span>
+              <a href="from-the-margins.html" class="journal-card-title">From the Margins</a>
+              <p class="journal-card-desc">
+                Long-form essays, reflections, and observations on drifting, permission, and the art of after. Published by the house.
+              </p>
+              <a href="from-the-margins.html" class="journal-card-link">Browse All Essays <span class="arrow">→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
        FEATURED ESSAY
        ============================================ -->
     <section class="featured-essay" id="featured-essay">
-      <span class="section-marker"><span>02</span> · Featured</span>
+      <span class="section-marker"><span>03</span> · Featured</span>
       <div class="container">
         <div class="reveal">
           <span class="section-label">From the Margins</span>
@@ -400,14 +438,20 @@
         </div>
         <article class="essay-feature-card reveal">
           <div class="essay-feature-image">
-            <span class="essay-feature-tag">Featured Essay</span>
-            <img src="assets/framer-reading-table.png" alt="The Reading Table — From the Margins" width="700"
-              height="600" loading="lazy" decoding="async">
+            <div class="kinfolk-photo-mat">
+              <span class="essay-feature-tag">Featured Essay</span>
+              <img src="assets/framer-reading-table.png" alt="The Reading Table — From the Margins" width="700"
+                height="600" loading="lazy" decoding="async">
+              <div class="photo-caption-subtle">
+                <span>The Reading Table</span>
+                <span>Jun 2026</span>
+              </div>
+            </div>
           </div>
           <div class="essay-feature-content">
             <p class="essay-feature-meta">From the Margins · Jun 26 · 6 min read</p>
             <h3>I Am Not Here to <em>Inspire You</em></h3>
-            <p>
+            <p class="drop-cap">
               There comes a point when surviving stops being enough. A reflection on moving past inspiration tropes into
               participation, self-authorship, and what comes next.
             </p>
@@ -428,81 +472,71 @@
     </section>
 
     <!-- ============================================
-       INTRODUCTION TO THE HAUS EDIT
+       KINFOLK ANIMATION 1: PINNED BACKGROUND REVEAL (Layered Curtain Effect)
        ============================================ -->
-    <section class="haus-edit" id="haus-edit">
-      <span class="section-marker"><span>03</span> · Private Appointment</span>
-      <div class="container">
-        <div class="haus-edit-intro">
-          <div class="reveal-left">
-            <span class="section-label">Private Editorial Appointment</span>
-            <h2 class="section-heading">The Haus Edit</h2>
-          </div>
-          <div class="reveal-right">
-            <p class="section-text">
-              Some lives don't need reinvention. They need editing. Together we'll examine your life, the way an editor
-              studies a manuscript. Carefully. Curiously. Without rushing toward an answer. You leave with Volume One —
-              a limited edition of one.
+    <div class="pinned-curtain-container">
+      <section class="backgroundReveal">
+        <img src="assets/framer-hero.jpg" alt="Volume I Edition — Pinned Editorial Visual" width="1920" height="1080" loading="lazy" decoding="async">
+        <div class="background-reveal-overlay">
+          <span class="editorial-meta" style="color: #FCFAF7;">VOLUME I EDITION · PALM SPRINGS</span>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 5.5vw, 4.5rem); color: #FCFAF7; font-weight: 400; margin-top: 1rem; max-width: 800px;">
+            A Limited Edition of <em>One.</em>
+          </h2>
+        </div>
+      </section>
+
+      <section class="foregroundPanel">
+        <div class="container">
+          <div class="kinfolk-quote-inner reveal">
+            <span class="editorial-meta" style="margin-bottom: 1.2rem;">THE READERS &amp; REGULARS</span>
+            <p class="kinfolk-quote-text">
+              "Some places ask you to become someone new. Feinix Haus asks something quieter — recognizing what's already built and editing with intention."
             </p>
-            <a href="haus-edit.html" class="btn" style="margin-top:1.5rem;">Reserve Your Appointment <span
-                class="arrow">→</span></a>
+            <span class="kinfolk-quote-author">— THE FEINIX HAUS EDITORIAL · PALM SPRINGS</span>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- ============================================
-       INTRODUCTION TO POOL HAUS
+       KINFOLK ANIMATION 2: FULL SCREEN MENU OVERLAY (Pale Green / Sage Atmosphere)
        ============================================ -->
-    <section class="pool-haus" id="pool-haus">
-      <span class="section-marker" style="color:rgba(252,250,247,0.5);"><span style="color:#E8B89A;">04</span> ·
-        Regulars</span>
-      <div class="container pool-haus-content">
-        <div class="pool-intro">
-          <div class="reveal-left">
-            <span class="section-label">For the Regulars</span>
-            <h2 class="section-heading">The Pool Haus</h2>
-          </div>
-          <div class="reveal-right">
-            <p>
-              Some conversations aren't meant to end after one visit. The Pool Haus is where regulars gather —
-              playlists, observations, Sunday conversations, new volumes, good records, strong espresso. Pull up a
-              chair.
-            </p>
-            <a href="pool-haus.html" class="btn btn-light" style="margin-top:1.5rem;">Enter the Pool Haus <span
-                class="arrow">→</span></a>
-          </div>
-        </div>
+    <div id="fullScreenMenu" class="fullscreen-menu-overlay" aria-hidden="true">
+      <div class="fullscreen-menu-header">
+        <a href="index.html" class="logo" aria-label="Feinix Haus — Home">
+          <span class="logo-word">Feinix<span class="logo-mark">·</span>Haus</span>
+          <span class="logo-tag">A Publishing House</span>
+        </a>
+        <button id="closeBtn" class="fullscreen-menu-close" aria-label="Close menu">✕</button>
       </div>
-    </section>
 
-    <!-- ============================================
-       FROM THE MARGINS — TEASER
-       ============================================ -->
-    <section class="from-margins" id="from-margins">
-      <span class="section-marker"><span>05</span> · Reading Table</span>
-      <div class="container">
-        <div class="archive-header">
-          <div class="reveal-left">
-            <span class="section-label">From the Margins</span>
-            <h2 class="section-heading">The <em>Reading Table</em></h2>
-          </div>
-          <div class="reveal-right">
-            <p class="section-text">
-              Essays, observations, and notes from the margins — on drifting, permission, and the art of after.
-            </p>
-            <div class="archive-inline-links">
-              <a href="from-the-margins.html" class="text-link">"I Am Not Here to Inspire You" <span
-                  class="arrow">→</span></a>
-              <a href="https://www.c-heads.com/2026/07/13/the-boat/" class="text-link" target="_blank"
-                rel="noopener">"The Boat" <span class="arrow">→</span></a>
-              <a href="from-the-margins.html" class="text-link" style="margin-top:0.4rem;">Explore the Reading Table
-                <span class="arrow">→</span></a>
-            </div>
-          </div>
+      <div class="fullscreen-menu-content">
+        <nav class="fullscreen-nav-links">
+          <ul>
+            <li><a href="index.html">01. Home</a></li>
+            <li><a href="haus-edit.html">02. The Haus Edit</a></li>
+            <li><a href="pool-haus.html">03. Pool Haus</a></li>
+            <li><a href="from-the-margins.html">04. From the Margins</a></li>
+            <li><a href="about.html">05. About Kelly Gunn</a></li>
+          </ul>
+        </nav>
+
+        <div class="fullscreen-menu-aside">
+          <span class="editorial-meta">SUBSCRIPTION &amp; APPOINTMENTS</span>
+          <p class="fullscreen-aside-text">
+            Receive notes from the Haus, long-form essays, and private invitations for upcoming Volume editions.
+          </p>
+          <a href="haus-edit.html#apply" class="btn btn-ink" style="width: 100%; justify-content: center; margin-top: 1.8rem;">
+            Apply for Appointment <span class="arrow">→</span>
+          </a>
         </div>
       </div>
-    </section>
+
+      <div class="fullscreen-menu-footer">
+        <span>© 2026 FEINIX HAUS · PALM SPRINGS</span>
+        <span>hello@feinixhaus.com</span>
+      </div>
+    </div>
 
     <!-- ============================================
        FAQ ACCORDION SECTION

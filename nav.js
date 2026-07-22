@@ -71,7 +71,7 @@
   const header = document.getElementById('site-header');
   const progressBar = document.getElementById('scroll-progress');
   const backToTop = document.getElementById('back-to-top');
-  const heroImage = document.querySelector('.hero-image-main');
+  const heroImage = document.querySelector('.kinfolk-hero-mat img, .hero-image-main');
   const scrollCue = document.querySelector('.scroll-cue');
 
   let scrollTicking = false;
@@ -93,7 +93,7 @@
       else backToTop.classList.remove('visible');
     }
     if (heroImage && !prefersReducedMotion && y < window.innerHeight) {
-      const parallax = y * 0.08;
+      const parallax = y * 0.06;
       heroImage.style.transform = 'translate3d(0,' + parallax + 'px,0)';
     } else if (heroImage && !prefersReducedMotion) {
       heroImage.style.transform = '';
@@ -113,41 +113,74 @@
   onScrollFrame();
 
   // ─────────────────────────────────────────────
-  // MOBILE MENU
+  // FULL SCREEN MENU OVERLAY & MOBILE MENU
   // ─────────────────────────────────────────────
   const hamburger = document.getElementById('hamburger-btn');
+  const fullScreenMenu = document.getElementById('fullScreenMenu');
+  const closeBtn = document.getElementById('closeBtn');
   const mobileMenu = document.getElementById('mobile-menu');
   const menuBackdrop = document.getElementById('menu-backdrop');
   const menuClose = document.getElementById('menu-close');
 
-  function openMenu() {
-    if (!mobileMenu) return;
-    mobileMenu.classList.add('open');
-    menuBackdrop.classList.add('open');
-    hamburger.classList.add('active');
-    hamburger.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    if (!mobileMenu) return;
-    mobileMenu.classList.remove('open');
-    menuBackdrop.classList.remove('open');
-    hamburger.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+  function openFullScreenMenu() {
+    if (fullScreenMenu) {
+      fullScreenMenu.classList.add('active');
+      fullScreenMenu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    } else if (mobileMenu) {
+      mobileMenu.classList.add('open');
+      if (menuBackdrop) menuBackdrop.classList.add('open');
+      if (hamburger) hamburger.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
   }
 
-  if (hamburger) hamburger.addEventListener('click', openMenu);
-  if (menuClose) menuClose.addEventListener('click', closeMenu);
-  if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
-  if (mobileMenu) {
-    mobileMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', closeMenu);
+  function closeFullScreenMenu() {
+    if (fullScreenMenu) {
+      fullScreenMenu.classList.remove('active');
+      fullScreenMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    if (mobileMenu) {
+      mobileMenu.classList.remove('open');
+      if (menuBackdrop) menuBackdrop.classList.remove('open');
+      if (hamburger) hamburger.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (hamburger) hamburger.addEventListener('click', openFullScreenMenu);
+  if (closeBtn) closeBtn.addEventListener('click', closeFullScreenMenu);
+  if (menuClose) menuClose.addEventListener('click', closeFullScreenMenu);
+  if (menuBackdrop) menuBackdrop.addEventListener('click', closeFullScreenMenu);
+
+  if (fullScreenMenu) {
+    fullScreenMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeFullScreenMenu);
     });
   }
+
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) closeMenu();
+    if (e.key === 'Escape') closeFullScreenMenu();
   });
+
+  // ─────────────────────────────────────────────
+  // GSAP SCROLLTRIGGER: ANIMATION 1 — PINNED BACKGROUND REVEAL
+  // ─────────────────────────────────────────────
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const pinnedSections = document.querySelectorAll('.backgroundReveal');
+    pinnedSections.forEach(function (sec) {
+      ScrollTrigger.create({
+        trigger: sec,
+        start: 'top top',
+        end: 'bottom top',
+        pin: true,
+        pinSpacing: false
+      });
+    });
+  }
 
   // ─────────────────────────────────────────────
   // SCROLL REVEAL (High-Performance Calm Reveal)
