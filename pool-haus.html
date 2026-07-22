@@ -49,30 +49,206 @@
   <a href="#main" class="skip-link">Skip to content</a>
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
+  <!-- ============================================
+     TOP ANNOUNCEMENT TICKER (Parker Palm Springs Style)
+     ============================================ -->
+  <div class="top-ticker-bar" id="top-ticker" role="region" aria-label="Announcements Ticker">
+    <div class="ticker-container">
+      <button class="ticker-arrow prev" id="ticker-prev" aria-label="Previous announcement">‹</button>
+      <div class="ticker-content-wrapper">
+        <div class="ticker-slide active" data-index="0">
+          <span class="ticker-badge">Volume I</span>
+          <span class="ticker-text">The Art of After — Available Now in The Haus Edit</span>
+          <a href="haus-edit.html" class="ticker-link">Explore Volume <span class="arrow">→</span></a>
+        </div>
+        <div class="ticker-slide" data-index="1">
+          <span class="ticker-badge">Community</span>
+          <span class="ticker-text">Monthly Open Haus &amp; Unapologetically After Skool Membership</span>
+          <a href="pool-haus.html" class="ticker-link">Join Pool Haus <span class="arrow">→</span></a>
+        </div>
+        <div class="ticker-slide" data-index="2">
+          <span class="ticker-badge">Essays</span>
+          <span class="ticker-text">Featured Editorial: "The Moment Anyway — A Conversation with Kelly"</span>
+          <a href="from-the-margins.html" class="ticker-link">Read Essay <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <button class="ticker-arrow next" id="ticker-next" aria-label="Next announcement">›</button>
+    </div>
+  </div>
+
+  <!-- ============================================
+     FLOATING SIDE SOCIAL RAIL (Parker Palm Springs Style)
+     ============================================ -->
+  <aside class="social-side-rail" aria-label="Social links">
+    <a href="https://www.instagram.com/feinix_haus" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      <span>Instagram</span>
+    </a>
+    <a href="https://www.tiktok.com/@unapologeticallyafter" target="_blank" rel="noopener" aria-label="TikTok">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+      <span>TikTok</span>
+    </a>
+    <a href="https://www.skool.com/unapologetically-after" target="_blank" rel="noopener" aria-label="Skool Community">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      <span>Community</span>
+    </a>
+  </aside>
+
   <main id="main">
 
-  <!-- HEADER -->
-  <header id="site-header" class="solid">
-    <div class="header-inner">
-      <a href="index.html" class="logo" aria-label="Feinix Haus — Home">
-        <span class="logo-word">Feinix<span class="logo-mark">·</span>Haus</span>
-        <span class="logo-tag">A Publishing House</span>
-      </a>
-      <nav class="desktop-nav" id="main-nav" aria-label="Primary">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="haus-edit.html">The Haus Edit</a></li>
-          <li><a href="pool-haus.html" aria-current="page">Pool Haus</a></li>
-          <li><a href="from-the-margins.html">From the Margins</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="#pool-join" class="nav-cta">Join</a></li>
-        </ul>
-      </nav>
-      <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+    <!-- ============================================
+       HEADER (Parker Palm Springs Centered Boutique Header & Mega Dropdowns)
+       ============================================ -->
+    <header id="site-header">
+      <div class="header-inner-centered">
+        <a href="index.html" class="logo-centered" aria-label="Feinix Haus — Home">
+          <span class="logo-title">FEINIX HAUS</span>
+          <span class="logo-subtitle">A PUBLISHING HOUSE · PALM SPRINGS</span>
+        </a>
+
+        <nav class="desktop-nav-parker" id="main-nav" aria-label="Primary">
+          <ul class="nav-menu">
+            
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Home</a>
+            </li>
+
+            <li class="nav-item has-dropdown">
+              <a href="haus-edit.html" class="nav-link">The Haus Edit <span class="nav-caret">▾</span></a>
+              <div class="mega-dropdown" role="region" aria-label="The Haus Edit Menu">
+                <div class="mega-dropdown-inner">
+                  <div class="mega-preview-card">
+                    <img src="assets/framer-hero.jpg" alt="The Haus Edit Preview" width="280" height="140" loading="lazy">
+                    <div class="mega-preview-text">
+                      <span class="mega-preview-tag">Volume I Edition</span>
+                      <p class="mega-preview-title">The Art of After</p>
+                      <a href="haus-edit.html" class="mega-preview-link">Explore Volume I <span class="arrow">→</span></a>
+                    </div>
+                  </div>
+                  <div class="mega-links-col">
+                    <span class="mega-col-heading">THE EXPERIENCE</span>
+                    <ul>
+                      <li><a href="haus-edit.html#overview">What It Is &amp; Who It's For</a></li>
+                      <li><a href="haus-edit.html#experience">The Signature Journey</a></li>
+                      <li><a href="haus-edit.html#volume-1">Volume I — The Art of After</a></li>
+                    </ul>
+                  </div>
+                  <div class="mega-links-col">
+                    <span class="mega-col-heading">RESERVATIONS &amp; FAQS</span>
+                    <ul>
+                      <li><a href="haus-edit.html#faqs">Frequently Asked Questions</a></li>
+                      <li><a href="haus-edit.html#apply" class="highlight-link">Apply / Book Experience</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item has-dropdown">
+              <a href="pool-haus.html" class="nav-link" aria-current="page">Pool Haus <span class="nav-caret">▾</span></a>
+              <div class="mega-dropdown" role="region" aria-label="Pool Haus Menu">
+                <div class="mega-dropdown-inner">
+                  <div class="mega-preview-card">
+                    <img src="assets/kelly-profile.png" alt="Pool Haus Preview" width="280" height="140" loading="lazy">
+                    <div class="mega-preview-text">
+                      <span class="mega-preview-tag">The Gathering Place</span>
+                      <p class="mega-preview-title">Unapologetically After</p>
+                      <a href="pool-haus.html" class="mega-preview-link">Join Community <span class="arrow">→</span></a>
+                    </div>
+                  </div>
+                  <div class="mega-links-col">
+                    <span class="mega-col-heading">MEMBERSHIPS</span>
+                    <ul>
+                      <li><a href="pool-haus.html#free-community">Free Unapologetically Community</a></li>
+                      <li><a href="pool-haus.html#paid-membership">Paid Membership ($22/mo)</a></li>
+                      <li><a href="pool-haus.html#whats-included">What's Included</a></li>
+                    </ul>
+                  </div>
+                  <div class="mega-links-col">
+                    <span class="mega-col-heading">GATHERINGS</span>
+                    <ul>
+                      <li><a href="pool-haus.html#open-haus">Monthly Open Haus</a></li>
+                      <li><a href="https://www.skool.com/unapologetically-after" target="_blank" rel="noopener">Skool Portal ↗</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item has-dropdown">
+              <a href="from-the-margins.html" class="nav-link">From the Margins <span class="nav-caret">▾</span></a>
+              <div class="mega-dropdown" role="region" aria-label="From the Margins Menu">
+                <div class="mega-dropdown-inner">
+                  <div class="mega-preview-card">
+                    <img src="assets/framer-hero.jpg" alt="Essays Preview" width="280" height="140" loading="lazy">
+                    <div class="mega-preview-text">
+                      <span class="mega-preview-tag">Editorial &amp; Essays</span>
+                      <p class="mega-preview-title">From the Margins</p>
+                      <a href="from-the-margins.html" class="mega-preview-link">Browse All Essays <span class="arrow">→</span></a>
+                    </div>
+                  </div>
+                  <div class="mega-links-col">
+                    <span class="mega-col-heading">FEATURED ESSAYS</span>
+                    <ul>
+                      <li><a href="https://www.c-heads.com/2026/02/12/the-moment-anyway-a-conversation-with-kelly/" target="_blank" rel="noopener">The Moment Anyway ↗</a></li>
+                      <li><a href="https://www.c-heads.com/2026/07/13/the-boat/" target="_blank" rel="noopener">The Boat ↗</a></li>
+                      <li><a href="from-the-margins.html">Read Editorial Column</a></li>
+                    </ul>
+                  </div>
+                  <div class="mega-links-col">
+                    <span class="mega-col-heading">TOPICS</span>
+                    <ul>
+                      <li><a href="from-the-margins.html?topic=editorial">Editorial Philosophy</a></li>
+                      <li><a href="from-the-margins.html?topic=reflections">Reflections &amp; Notes</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item has-dropdown">
+              <a href="about.html" class="nav-link">About <span class="nav-caret">▾</span></a>
+              <div class="mega-dropdown" role="region" aria-label="About Menu">
+                <div class="mega-dropdown-inner">
+                  <div class="mega-preview-card">
+                    <img src="assets/kelly-profile.png" alt="Kelly Gunn Preview" width="280" height="140" loading="lazy">
+                    <div class="mega-preview-text">
+                      <span class="mega-preview-tag">Editor-in-Chief</span>
+                      <p class="mega-preview-title">Kelly Gunn</p>
+                      <a href="about.html" class="mega-preview-link">Read Story <span class="arrow">→</span></a>
+                    </div>
+                  </div>
+                  <div class="mega-links-col">
+                    <span class="mega-col-heading">THE STORY</span>
+                    <ul>
+                      <li><a href="about.html#story">My Story &amp; Journey</a></li>
+                      <li><a href="about.html#why-feinix">Why Feinix Haus Exists</a></li>
+                      <li><a href="about.html#philosophy">Editorial Philosophy</a></li>
+                    </ul>
+                  </div>
+                  <div class="mega-links-col">
+                    <span class="mega-col-heading">PRESS &amp; MEDIA</span>
+                    <ul>
+                      <li><a href="about.html#press">Press, Podcasts &amp; Media</a></li>
+                      <li><a href="about.html#contact">Get in Touch</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a href="pool-haus.html" class="nav-cta-parker">Join</a>
+            </li>
+
+          </ul>
+        </nav>
+        <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false"
+          aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
 
   <div class="menu-backdrop" id="menu-backdrop"></div>
   <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
@@ -158,16 +334,22 @@
       <!-- Pool Haus Visual Feature -->
       <div class="volume-feature reveal" style="margin-top: 4rem;">
         <div class="volume-feature-image">
-          <img src="assets/framer-pool-haus.jpg"
-               alt="The Pool Haus Atmosphere — sunlit water and quiet luxury"
-               width="600" height="750"
-               loading="lazy"
-               decoding="async">
+          <div class="kinfolk-photo-mat">
+            <img src="assets/framer-pool-haus.jpg"
+                 alt="The Pool Haus Atmosphere — sunlit water and quiet luxury"
+                 width="600" height="750"
+                 loading="lazy"
+                 decoding="async">
+            <div class="photo-caption-subtle">
+              <span>The Pool Haus Terrace</span>
+              <span>Palm Springs</span>
+            </div>
+          </div>
         </div>
         <div style="display: flex; flex-direction: column; justify-content: center; padding: 2rem 0;">
           <span class="eyebrow">The Atmosphere</span>
           <h3>A quiet room for <em>thoughtful living.</em></h3>
-          <p class="section-text" style="margin-bottom: 1.5rem;">
+          <p class="section-text drop-cap" style="margin-bottom: 1.5rem;">
             The Pool Haus was built to feel like the terrace of a Palm Springs hotel — where speed gives way to attention, and depth replaces performance. Pull up a chair.
           </p>
           <div>

@@ -150,9 +150,9 @@
   });
 
   // ─────────────────────────────────────────────
-  // SCROLL REVEAL
+  // SCROLL REVEAL (High-Performance Calm Reveal)
   // ─────────────────────────────────────────────
-  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-stagger');
+  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger');
   if ('IntersectionObserver' in window && !prefersReducedMotion) {
     const revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -161,7 +161,7 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     revealElements.forEach(function (el) { revealObserver.observe(el); });
   } else {
     revealElements.forEach(function (el) { el.classList.add('visible'); });
@@ -261,6 +261,63 @@
           }
         });
       });
+    });
+  }
+
+  // ─────────────────────────────────────────────
+  // PARKER PALM SPRINGS TOP TICKER SLIDER
+  // ─────────────────────────────────────────────
+  const tickerSlides = document.querySelectorAll('.ticker-slide');
+  const prevBtn = document.getElementById('ticker-prev');
+  const nextBtn = document.getElementById('ticker-next');
+  let currentTickerIndex = 0;
+  let tickerTimer = null;
+
+  function showTickerSlide(index) {
+    if (!tickerSlides.length) return;
+    tickerSlides.forEach(function (slide, i) {
+      slide.classList.remove('active', 'exit-up');
+      if (i === currentTickerIndex) slide.classList.add('exit-up');
+    });
+    currentTickerIndex = (index + tickerSlides.length) % tickerSlides.length;
+    tickerSlides[currentTickerIndex].classList.add('active');
+  }
+
+  function nextTickerSlide() {
+    showTickerSlide(currentTickerIndex + 1);
+  }
+
+  function startTickerAutoPlay() {
+    if (tickerTimer) clearInterval(tickerTimer);
+    tickerTimer = setInterval(nextTickerSlide, 5000);
+  }
+
+  if (tickerSlides.length) {
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        showTickerSlide(currentTickerIndex - 1);
+        startTickerAutoPlay();
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        nextTickerSlide();
+        startTickerAutoPlay();
+      });
+    }
+    startTickerAutoPlay();
+  }
+
+  // ─────────────────────────────────────────────
+  // PARKER PALM SPRINGS CONCIERGE WIDGET
+  // ─────────────────────────────────────────────
+  const conciergeSelect = document.getElementById('concierge-select');
+  const conciergeBtn = document.getElementById('concierge-btn');
+
+  if (conciergeSelect && conciergeBtn) {
+    conciergeSelect.addEventListener('change', function () {
+      const selectedTarget = conciergeSelect.value;
+      conciergeBtn.setAttribute('href', selectedTarget);
     });
   }
 })();
